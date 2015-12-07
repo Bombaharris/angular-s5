@@ -1,0 +1,522 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <title>Angular JS &mdash; wprowadzenie</title>
+        <!-- metadata -->
+        <meta charset="utf-8">
+            <meta name="generator" content="S5" />
+            <meta name="version" content="S5 1.1" />
+            <meta name="presdate" content="20050728" />
+            <meta name="author" content="Eric A. Meyer" />
+            <meta name="company" content="Complex Spiral Consulting" />
+            <!-- configuration parameters -->
+            <meta name="defaultView" content="slideshow" />
+            <meta name="controlVis" content="hidden" />
+            <!-- style sheet links -->
+            <link rel="stylesheet" href="ui/default/slides.css" type="text/css" media="projection" id="slideProj" />
+            <link rel="stylesheet" href="ui/default/outline.css" type="text/css" media="screen" id="outlineStyle" />
+            <link rel="stylesheet" href="ui/default/print.css" type="text/css" media="print" id="slidePrint" />
+            <link rel="stylesheet" href="ui/default/opera.css" type="text/css" media="projection" id="operaFix" />
+            <link href="ui/default/bomb.css" rel="stylesheet" type="text/css"/>
+            <link href="ui/default/font-face-opensans.css" rel="stylesheet" type="text/css"/>
+
+            <!-- S5 JS -->
+            <script src="ui/default/slides.js" type="text/javascript"></script>
+            <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js" type="text/javascript"></script>
+            <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular.min.js"></script>
+            <script src="angular/app.js" type="text/javascript"></script>
+    </head>
+    <body>
+
+        <div class="layout">
+            <div id="controls"><!-- DO NOT EDIT --></div>
+            <div id="currentSlide"><!-- DO NOT EDIT --></div>
+            <div id="header"></div>
+            <div id="footer">
+                <h1>Warszawa 02.10.2015</h1>
+                <h2>Angular JS</h2>
+            </div>
+
+        </div>
+        <div class="presentation">
+            <div class="slide">
+                <h1>Angular JS</h1>
+                <h2>wprowadzenie</h2>
+                <h3>Rafał Zielonka</h3>
+                <h4>Alfa Projekt</h4>
+            </div>
+
+            <div class="slide">
+                <h1>Czym jest Angular?</h1>
+                <ul>
+                    <li>framework do budowania aplikacji zwanych <abbr>SPA</abbr> (Single Page Application)</li>
+                    <li>pozwala na użycie HTML'a jako języka szablonów</li>
+                    <li>jest komplentnym rozwiązaniem ale tylko po stronie klienta</li>
+                    <li>zaprojektowany z myślą o aplikacjach typu <abbr>CRUD</abbr> (Create Read Update Delete)</li>
+                    <li>nakierowany na testy jednostkowe i testy E2E</li>
+                </ul>   
+            </div>
+
+            <div class="slide">
+                <h1>Zalety i wady</h1>
+                <div>
+                    <div class="six columns">
+                        <ul class="medium">
+                            <li>implementacja MVC</li>
+                            <li>szybki dewelopment - &ldquo;mniej kodu mniej błędów&rdquo;</li>
+                            <li>dwukierunkowe bindowanie</li>
+                            <li>rozszera HTML</li>
+                            <li>łatwo testowalny</li>    
+                        </ul>
+                    </div>
+                    <div class="six columns">
+                        <ul class="medium">
+                            <li>stroma krzywa poznawcza</li>
+                            <li>złożonośc koncepcji</li>
+                            <li>&ldquo;$scope soup&rdquo; i pisanie w Angularze</li>
+                            <li>słabo rozbudowana dokumentacja</li>
+                            <li>wydajność</li>
+                            <li>problemy z SEO</li>    
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide">
+                <h1>Pojęcia i koncepcje</h1>
+                <dl>
+                    <dt>Template</dt>
+                    <dd>Szablon &mdash; HTML z dodatkowymi znacznikami</dd>
+                    <dt>Directive</dt>
+                    <dd>Dyrektywa &mdash; rozwinięcie HTML o nowe atrybuty i elementy</dd>
+                    <dt>Model</dt>
+                    <dd>Model &mdash; dane na których zachodzi interakcja</dd>
+                    <dt>Scope</dt>
+                    <dd>Kontekst przez który otrzymujemy dostęp do modelu</dd>
+                </dl>
+                <div class="handout">
+                    [any material that should appear in print but not on the slide]
+                </div>
+            </div>
+
+            <div class="slide">
+                <h1>Pojęcia i koncepcje</h1>
+                <dl>
+                    <dt>Expression</dt>
+                    <dd>Wyrażenie &mdash; zapis pozwalający na dostęp do zmiennych z kontekstu</dd>
+                    <dt>Compiler</dt>
+                    <dd>Kompilator szablonów wraz z dyrektywami</dd>
+                    <dt>Filter</dt>
+                    <dd>Filtr formatujący wartość wyrażenia</dd>
+                    <dt>View</dt>
+                    <dd>Widok &mdash; to co widzi uzytkownik DOM</dd>
+                </dl>
+            </div>
+
+            <div class="slide">
+                <h1>Pojęcia i koncepcje</h1>
+                <dl>
+                    <dt>Data Binding</dt>
+                    <dd>Bindowanie &mdash; synchronizacja danych pomiędzy modelem i  widokiem</dd>
+                    <dt>Controller</dt>
+                    <dd>Kontroller &mdash; logika stojąca za widokiem</dd>
+                    <dt>Module</dt>
+                    <dd>Moduł łączący części aplikacji np. filtry, dyrektywy, serwisy</dd>
+                    <dt>Service</dt>
+                    <dd>Serwis &mdash; osobny komponent, klasa niezależna od widoku</dd>
+                </dl>
+            </div>
+
+            <div class="slide">
+                <h1>Moduły</h1>
+                <ul>
+                    <li>ngAnimate &mdash; animacja z użyciem jQuery i CSS</li>
+                    <li>ngAria &mdash; wsparcie dla WAI-ARIA (Accessible Rich Internet Applications)</li>
+                    <li>ngResource &mdash; wsparcie do pracy z RESTful API</li>
+                    <li>ngTouch &mdash; wsparcie dla urządzeń mobilnych</li>
+                    <li>ngRoute &mdash; wparcie dla routingu</li>
+                </ul> 
+            </div>
+
+            <div class="slide">
+                <h1>Serwisy (dostarczane przez moduły)</h1>
+                <ul>
+                    <li>$http &mdash; dostarcza funkcjonalności do komunikacji via HTTP</li>
+                    <li>$interval &mdash; wrapper na <samp>window.setInterval</samp></li>
+                    <li>$log &mdash; prosty serwis logowania bazujący na obiekcie <samp>console</samp></li>
+                    <li>$window &mdash; referencja do obiektu <samp>window</samp></li>
+                    <li>$q &mdash; pozwala uruchamiać funkcje asynchronicznie (implementacja obietnicy)</li>
+                </ul> 
+            </div>
+
+            <div class="slide">
+                <h1>Kontrolery</h1>
+                <div>
+                    <div class="six columns">
+                        <h2>app.js</h2>
+                        <pre class="prettyprint">'use strict';
+
+var myApp = angular.module('spicyApp1', []);
+
+myApp.controller('SpicyController', ['$scope', function($scope) {
+    $scope.spice = 'very';
+
+    $scope.chiliSpicy = function() {
+        $scope.spice = 'chili';
+    };
+
+    $scope.jalapenoSpicy = function() {
+        $scope.spice = 'jalapeño';
+    };
+}]);</pre>
+                    </div>
+                    <div class="six columns">
+                        <h2>index.html</h2>
+                        <pre class="prettyprint">&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;Example - example-example7-production&lt;/title&gt;
+  &lt;script src=&quot;angular.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;  
+&lt;/head&gt;
+&lt;body ng-app=&quot;spicyApp1&quot;&gt;
+  &lt;div ng-controller=&quot;SpicyController&quot;&gt;
+ &lt;button ng-click=&quot;chiliSpicy()&quot;&gt;Chili&lt;/button&gt;
+ &lt;button ng-click=&quot;jalapenoSpicy()&quot;&gt;Jalape&ntilde;o&lt;/button&gt;
+ &lt;p&gt;The food is {{spice}} spicy!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+                    </div>
+                </div>
+                <hr />
+                <div id="spicyApp1" class="ng-app">
+                    <div ng-controller="SpicyController">
+                        <button type="button" ng-click="chiliSpicy()">Chili</button>
+                        <button type="butto " ng-click="jalapenoSpicy()">Jalapeño</button>
+                        <p>The food is {{spice}} spicy!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <h1>Kontrolery i dziedziczenie</h1>
+                <div>
+                    <div class="eight columns">
+                        <h2>app.js</h2>
+                        <pre class="prettyprint">var myApp1 = angular.module('scopeInheritance', []);
+
+myApp1.controller('MainController', ['$scope', function ($scope) {
+        $scope.rodzina = 'Kowalscy';
+        $scope.imie = 'Jan';
+    }]);
+myApp1.controller('ChildController', ['$scope', function ($scope) {
+        $scope.imie = 'Darek';
+    }]);
+myApp1.controller('GrandChildController', ['$scope', function ($scope) {
+        $scope.rodzina = 'Nowak';
+        $scope.imie = 'Tomek';
+    }]);
+                        </pre>
+                    </div>
+                    <div class="four columns">
+                        <h2>index.html</h2>
+                        <pre class="prettyprint">&lt;div class=&quot;family&quot;&gt;
+&lt;div ng-controller=&quot;MainController&quot;&gt;
+&lt;p&gt;Rodzina {{rodzina}}, {{imie}}!&lt;/p&gt;
+
+&lt;div ng-controller=&quot;ChildController&quot;&gt;
+  &lt;p&gt;Rodzina {{rodzina}}, {{imie}}!&lt;/p&gt;
+
+  &lt;div ng-controller=&quot;GrandChildController&quot;&gt;
+    &lt;p&gt;Rodzina {{rodzina}}, {{imie}}!&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</pre>
+                    </div>
+                </div>
+                <hr />
+                <div id="scopeInheritance" class="ng-app">
+                    <div class="family">
+                        <div ng-controller="MainController">
+                            <p>Rodzina {{rodzina}}, {{imie}}!</p>
+
+                            <div ng-controller="ChildController">
+                                <p>Rodzina {{rodzina}}, {{imie}}!</p>
+
+                                <div ng-controller="GrandChildController">
+                                    <p>Rodzina {{rodzina}}, {{imie}}!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <h1>Serwisy</h1>
+                <div>
+                    <div class="seven columns">
+                        <h2>app.js</h2>
+                        <pre class="prettyprint">var myApp2 = angular.module('myServiceModule', []);
+
+myApp2.controller('MyController', ['$scope', 'notify', function ($scope, notify) {
+        $scope.callNotify = function (msg) {
+            notify(msg);
+        };
+    }]);
+myApp2.factory('notify', ['$window', function ($window) {
+        var msgs = [];
+        return function (msg) {
+            msgs.push(msg);
+            if (msgs.length === 3) {
+                $window.alert(msgs.join("\n"));
+                msgs = [];
+            }
+        };
+    }]);
+                        </pre>
+                    </div>
+                    <div class="five columns">
+                        <h2>index.html</h2>
+                        <pre class="prettyprint">
+&lt;div ng-controller=&quot;MyController&quot;&gt;
+    &lt;p&gt;Prosty przyk&#322;ad serwisu wstrzykni&#281;tego do kontrolera ...&lt;/p&gt;
+    &lt;button ng-click=&quot;callNotify('Hello!');&quot;&gt;Powiadom&lt;/button&gt;
+&lt;/div&gt;
+                        </pre>
+                    </div>
+                </div>
+                <hr />
+                <div id="myServiceModule" class="ng-app">
+                    <div ng-controller="MyController">
+                        <p>Prosty przykład serwisu wstrzykniętego do kontrolera ...</p>
+                        <button ng-click="callNotify('Hello!');">Powiadom</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <h1>Konteksty &mdash; $rootScope,$scope</h1>
+                <div>
+                    <div class="eight columns">
+                        <h2>app.js</h2>
+                        <pre class="prettyprint">var myApp3 = angular.module('myScopeModule', []);
+myApp3.controller('AController', ['$rootScope', '$scope', function ($rootScope, $scope) {
+        $scope.message = '';
+        $scope.broadcast = function () {
+            $rootScope.$broadcast('event-a', 'A');
+        };
+        $scope.$on('event-b', function (event, args) {
+            $scope.message = $scope.message.concat(args);
+        });
+    }]);
+myApp3.controller('BController', ['$rootScope', '$scope', function ($rootScope, $scope) {
+        $scope.message = '';
+        $scope.broadcast = function () {
+            $rootScope.$broadcast('event-b', 'B');
+        };
+        $scope.$on('event-a', function (event, args) {
+            $scope.message = $scope.message.concat(args);
+        });
+    }]);
+                        </pre>
+                    </div>
+                    <div class="four columns">
+                        <h2>index.html</h2>
+                        <pre class="prettyprint">
+&lt;div ng-controller=&quot;AController&quot;&gt;
+    &lt;button ng-click=&quot;broadcast();&quot;&gt;Nadawaj A&lt;/button&gt;
+    &lt;span&gt;Wiadomo&#347;&#263; od B: {{message}}&lt;/span&gt;
+&lt;/div&gt;
+&lt;div ng-controller=&quot;BController&quot;&gt;
+    &lt;button ng-click=&quot;broadcast();&quot;&gt;Nadawaj B&lt;/button&gt;
+    &lt;span&gt;Wiadomo&#347;&#263; od A: {{message}}&lt;/span&gt;
+&lt;/div&gt;
+                        </pre>
+                    </div>
+                </div>
+                <hr />
+                <div id="myScopeModule" class="ng-app">
+                    <div ng-controller="AController">
+                        <button ng-click="broadcast();">Nadawaj A</button>
+                        <span>Wiadomość od B: {{message}}</span>
+                    </div>
+                    <div ng-controller="BController">
+                        <button ng-click="broadcast();">Nadawaj B</button>
+                        <span>Wiadomość od A: {{message}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <h1>Wyrażenia</h1>
+                <div>
+                    <div class="six columns">
+                        <h2>app.js</h2>
+                        <pre class="prettyprint">var myApp4 = angular.module('myExpressionModule', []);</pre>
+                    </div>
+                    <div class="six columns">
+                        <h2>index.html</h2>
+                        <pre class="prettyprint">
+&lt;p&gt;1 + 2 = {{1 + 2}}&lt;/p&gt;
+&lt;p&gt;{{'Hello!'}}&lt;/p&gt;
+&lt;p&gt;{{2 &gt; 1 ? '2 &gt; 1' : '2 &lt; 1'}}&lt;/p&gt;
+                        </pre>
+                    </div>
+                </div>
+                <hr />
+                <div id="myExpressionModule" class="ng-app">
+                    <p>1 + 2 = {{1 + 2}}</p>
+                    <p>{{'Hello!'}}</p>
+                    <p>{{2 > 1 ? '2 > 1' : '2 < 1'}}</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <h1>Filtry</h1>
+                <div>
+                    <div class="six columns">
+                        <h2>app.js</h2>
+                        <pre class="prettyprint">var myApp5 = angular.module('myFilterModule', []);
+
+myApp5.filter('uppercase', function() {
+  return function(input) {
+      return input.toUpperCase();
+  };
+});
+
+myApp5.filter('lowercase', function() {
+  return function(input) {
+      return input.toLowerCase();
+  };
+});
+                        </pre>
+                    </div>
+                    <div class="six columns">
+                        <h2>index.html</h2>
+                        <pre class="prettyprint">
+&lt;p&gt;{{'[1,2,3,4]'| json}}&lt;/p&gt;
+&lt;p&gt;{{'Hello!'| uppercase}}&lt;/p&gt;
+&lt;p&gt;{{'Hello!'| lowercase}}&lt;/p&gt;
+                        </pre>
+                    </div>
+                </div>
+                <hr />
+                <div id="myFilterModule" class="ng-app">
+                    <p>{{'[1,2,3,4]'| json}}</p>
+                    <p>{{'Hello!'| uppercase}}</p>
+                    <p>{{'Hello!'| lowercase}}</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <h1>Dyrektywy</h1>
+                <div>
+                    <div class="eight columns">
+                        <h2>app.js</h2>
+                        <pre class="prettyprint">var myApp6 = angular.module('myDirectiveModule', []);
+
+myApp6.directive('customCheckbox', function () {
+    return {
+        restrict: 'E',
+        replace: true,
+        transclude: true,
+        template: '&lt;span class=&quot;checkbox&quot; ng-class=&quot;{checked: isChecked}&quot; ng-click=&quot;toggleMe()&quot;&gt;&lt;/span&gt;',
+        scope: {isChecked: '=?'},
+        link: function (scope, elem, attrs) {
+            scope.isChecked = false;
+            scope.toggleMe = function () {
+                scope.isChecked = !(scope.isChecked);
+            }
+        }
+    }
+});
+                        </pre>
+                    </div>
+                    <div class="four columns">
+                        <h2>index.html</h2>
+                        <pre class="prettyprint">
+&lt;custom-checkbox&gt;&lt;/custom-chekbox&gt;
+                        </pre>
+                    </div>
+                </div>
+                <hr />
+                <div id="myDirectiveModule" class="ng-app">
+                    <custom-checkbox></custom-chekbox>
+                </div>
+            </div>
+            <div class="slide">
+                <h1>Kompilator HTML</h1>
+                <div>
+                    <img src="ui/img/compile.png" alt="" height="600" class="center" />
+                </div>
+            </div>
+            <div class="slide">
+                <h1>Cykl &mdash; $digest</h1>
+                <div>
+                    <img src="ui/img/digest.png" alt="" height="600" class="center" />
+                </div>
+            </div>
+            <div class="slide">
+                <h1>Scenariusze testowe &mdash; <small>Protractor i testy E2E</small></h1>
+                <div>
+                    <div class="six columns">
+                        <img src="ui/img/scenario_runner.png" alt="" height="600" class="center" />
+                    </div>
+                    <div class="six columns">
+                        <h2>scenario.js</h2>
+                        <pre class="prettyprint">  describe('Phone detail view', function() {
+
+    beforeEach(function() {
+      browser.get('app/index.html#/phones/nexus-s');
+    });
+
+
+    it('should display nexus-s page', function() {
+      expect(element(by.binding('phone.name')).getText()).toBe('Nexus S');
+    });
+
+
+    it('should display the first phone image as the main phone image', function() {
+      expect(element(by.css('img.phone.active'))
+            .getAttribute('src'))
+            .toMatch(/img\/phones\/nexus-s.0.jpg/);
+    });
+
+  });
+});
+                        </pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide">
+                <h1>Narzędzia</h1>
+                <div>
+                    <ul>
+                        <li>Batarang &mdash; plugin do debugowania w przeglądarce</li>
+                        <li>Karma &mdash; moduł Node.JS starujący serwer WWW i wykonujący kod w przeglądarce</li>
+                        <li>Protractor &mdash; moduł Node.JS do testów końcowych w przeglądarce</li>
+                        <li>wsparcie dla wielu edytorów np. w Netbeans <samp>Angular JS Editor</samp></li>    
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+        <script>
+            angular.bootstrap(document.getElementById('spicyApp1'), ['spicyApp1']);
+            angular.bootstrap(document.getElementById('scopeInheritance'), ['scopeInheritance']);
+            angular.bootstrap(document.getElementById('myServiceModule'), ['myServiceModule']);
+            angular.bootstrap(document.getElementById('myScopeModule'), ['myScopeModule']);
+            angular.bootstrap(document.getElementById('myExpressionModule'), ['myExpressionModule']);
+            angular.bootstrap(document.getElementById('myFilterModule'), ['myFilterModule']);
+            angular.bootstrap(document.getElementById('myDirectiveModule'), ['myDirectiveModule']);
+        </script>
+    </body>
+</html>
